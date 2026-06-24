@@ -4,21 +4,23 @@
     box-sizing: border-box;
 }
 
-html, body {
+html {
+    height: 100%;
+}
+
+body {
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
     position: fixed;
     inset: 0;
-}
-
-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    -webkit-overflow-scrolling: touch;
 }
 
 #bg-particles {
