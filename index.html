@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đại Chiến Bong Bóng Tiếng Việt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="bg-particles"></div>
+
+    <div id="start-screen">
+        <div class="logo-icon">🫧</div>
+        <h1>ĐẠI CHIẾN<br>BONG BÓNG</h1>
+        <p class="subtitle">Gõ chính xác để làm nổ bong bóng!</p>
+
+        <div class="input-group">
+            <label for="player-name-input">Tên của bạn</label>
+            <input type="text" id="player-name-input" placeholder="Nhập biệt danh..." maxlength="15" autofocus>
+        </div>
+
+        <div class="input-group">
+            <label>Chế độ chơi</label>
+            <div class="mode-selection">
+                <button class="mode-btn active" data-target="10">DỄ</button>
+                <button class="mode-btn" data-target="20">TRUNG BÌNH</button>
+                <button class="mode-btn" data-target="30">KHÓ</button>
+            </div>
+        </div>
+
+        <button id="start-btn">BẮT ĐẦU CHƠI</button>
+        <p class="version">v1.0</p>
+    </div>
+
+    <div id="game-container" class="hidden">
+        <div class="info-text">🎯 Gõ chính xác cụm từ trong bong bóng để làm nổ chúng!</div>
+        <canvas id="gameCanvas" width="800" height="550"></canvas>
+        <input type="text" id="input-box" placeholder="Gõ chữ vào đây..." autocomplete="off" spellcheck="false">
+        <button id="home-btn" class="hidden">← VỀ TRANG CHỦ</button>
+    </div>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="leaderboard-service.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
