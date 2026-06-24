@@ -10,6 +10,13 @@ const homeBtn = document.getElementById('home-btn');
 
 let từĐơnBank = [];
 
+if (window.visualViewport) {
+    visualViewport.addEventListener('resize', () => {
+        const diff = window.innerHeight - visualViewport.height;
+        inputBox.style.bottom = diff > 100 ? diff + 'px' : '0';
+    });
+}
+
 async function loadOnlineDictionary() {
     startBtn.innerText = "Đang kết nối...";
     startBtn.disabled = true;
