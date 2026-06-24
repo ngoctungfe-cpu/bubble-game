@@ -167,22 +167,21 @@ class Bubble {
         this.text = data.text;
         this.type = data.type;
 
-        const s = screenScale;
-        if (this.type === 1) { this.radius = 55 * s; this.points = 10; this.color = '#00ffcc'; }
-        else if (this.type === 2) { this.radius = 80 * s; this.points = 25; this.color = '#ffcc00'; }
-        else { this.radius = 120 * s; this.points = 50; this.color = '#ff3366'; }
+        if (this.type === 1) { this.radius = 80; this.points = 10; this.color = '#00ffcc'; }
+        else if (this.type === 2) { this.radius = 110; this.points = 25; this.color = '#ffcc00'; }
+        else { this.radius = 150; this.points = 50; this.color = '#ff3366'; }
 
         this.x = this.pickX(existing);
         this.y = -this.radius;
 
         let speedBonus = this.type === 1 ? 0.55 : (this.type === 2 ? 0.45 : 0.35);
-        this.speed = (Math.random() * 0.15 + speedBonus) * (0.6 + 0.4 * s);
+        this.speed = (Math.random() * 0.15 + speedBonus) * 0.8;
         this.glowPhase = Math.random() * Math.PI * 2;
     }
 
     pickX(existing) {
         const tries = 40;
-        const gap = 20 * screenScale;
+        const gap = 20;
         for (let i = 0; i < tries; i++) {
             const x = Math.random() * (canvas.width - this.radius * 2) + this.radius;
             let ok = true;
@@ -207,10 +206,9 @@ class Bubble {
         ctx.save();
         const x = this.x, y = this.y, r = this.radius;
         const glow = Math.sin(this.glowPhase) * 0.15 + 0.85;
-        const s = screenScale;
 
         ctx.shadowColor = this.color;
-        ctx.shadowBlur = 25 * glow * s;
+        ctx.shadowBlur = 20 * glow;
 
         let gradient = ctx.createRadialGradient(x, y, r * 0.05, x, y, r);
         gradient.addColorStop(0, `rgba(255, 255, 255, 0.9)`);
@@ -226,29 +224,29 @@ class Bubble {
         ctx.shadowBlur = 0;
 
         ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * glow})`;
-        ctx.lineWidth = 2.5 * s;
+        ctx.lineWidth = 2.5;
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.arc(x, y, r - 10 * s, 0, Math.PI * 2);
+        ctx.arc(x, y, Math.max(r - 14, r * 0.7), 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
         ctx.fill();
 
-        const fontSize = Math.round((this.type === 3 ? 18 : (this.type === 2 ? 20 : 22)) * s);
-        ctx.font = `bold ${Math.max(fontSize, 11)}px "Poppins", "Arial Black", sans-serif`;
+        const fontSize = this.type === 3 ? 32 : (this.type === 2 ? 34 : 36);
+        ctx.font = `bold ${Math.max(fontSize, 14)}px "Poppins", "Arial Black", sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
         ctx.shadowColor = 'rgba(0,0,0,0.8)';
-        ctx.shadowBlur = 8 * s;
+        ctx.shadowBlur = 8;
 
         ctx.strokeStyle = 'rgba(0,0,0,0.8)';
-        ctx.lineWidth = 4 * s;
+        ctx.lineWidth = 4;
         ctx.strokeText(this.text, x, y);
 
         ctx.fillStyle = '#ffffff';
         ctx.shadowColor = 'rgba(0,0,0,0.6)';
-        ctx.shadowBlur = 4 * s;
+        ctx.shadowBlur = 4;
         ctx.fillText(this.text, x, y);
 
         ctx.shadowBlur = 0;
